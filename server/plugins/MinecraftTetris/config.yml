@@ -1,0 +1,7 @@
+width: 10
+height: 20
+backgroundBlock: "BLACK_CONCRETE"
+bitBlock: "WHITE_CONCRETE"
+blockDataPath: "./tetris_data.txt"
+timeBetweenChange: 250
+speedUpRate: 2

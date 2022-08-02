@@ -1,0 +1,8 @@
+width: 10
+height: 20
+backgroundBlock: "BLACK_CONCRETE"
+bitBlock: "WHITE_CONCRETE"
+blockDataPath: ""
+timeBetweenChange: 250
+speedUpRate: 2
+distFromScreen: 10

@@ -1,0 +1,8 @@
+name: MinecraftTetris
+version: '${version}'
+main: org.bananasamirite.minecrafttetris.MinecraftTetris
+api-version: 1.17
+
+commands:
+  starttetris:
+    description: "starts a tetris game"
