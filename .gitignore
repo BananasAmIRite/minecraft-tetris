@@ -131,3 +131,4 @@ server/*.txt
 server/*.bat
 server/*.properties
 server/paper-*.jar
+server/plugins/bStats
