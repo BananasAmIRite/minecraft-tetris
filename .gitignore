@@ -118,17 +118,5 @@ run/
 !gradle-wrapper.jar
 
 # server
-server/cache
-server/logs
-server/world
-server/world_nether
-server/world_the_end
-server/.console_history
-server/banned-ips.json
-server/*.json
-server/*.yml
-server/*.txt
-server/*.bat
-server/*.properties
-server/paper-*.jar
-server/plugins/bStats
+server/
+!server/plugins/MinecraftTetris/
