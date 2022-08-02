@@ -15,8 +15,8 @@ import java.util.Arrays;
 public final class MinecraftTetris extends JavaPlugin {
     private TetrisConfig config;
     private TetrisGameManager gameManager;
-
     private TetrisBlockGroupManager groups;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -38,10 +38,10 @@ public final class MinecraftTetris extends JavaPlugin {
     }
 
     private void checkFiles() {
-        if (!new File(getDataFolder() + File.separator + "plugin.yml").exists()) {
+//        if (!new File(getDataFolder() + File.separator + "config.yml").exists()) {
             saveResource("config.yml", false);
             saveResource("tetris_data.txt", false);
-        }
+//        }
     }
 
     private TetrisConfig loadConfig() throws FileNotFoundException {

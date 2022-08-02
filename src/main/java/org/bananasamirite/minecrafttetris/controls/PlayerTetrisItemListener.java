@@ -5,7 +5,6 @@ import org.bananasamirite.minecrafttetris.MinecraftTetris;
 import org.bananasamirite.minecrafttetris.TetrisGame;
 import org.bananasamirite.minecrafttetris.controls.items.*;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,14 +14,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlayerTetrisItemListener extends ItemController implements Listener {
-    private Player player;
+    private final Player player;
     private ItemStack[] storedInventory;
-    private MinecraftTetris plugin;
-    private TetrisGame game;
+    private final TetrisGame game;
     public PlayerTetrisItemListener(TetrisGame game) {
         this.game = game;
         this.player = game.getPlayer();
-        plugin = game.getPlugin();
         setupInventory();
     }
 
@@ -34,7 +31,6 @@ public class PlayerTetrisItemListener extends ItemController implements Listener
         setItemInInventory(4, new TetrisDownItem(this.game, new ItemStack(Material.RED_CONCRETE), Material.RED_CONCRETE, Material.GREEN_CONCRETE), Component.text("Speed Up/Slow Down"));
         setItemInInventory(5, new TetrisRotateRightItem(this.game, new ItemStack(Material.ARROW)), Component.text("Rotate Right"));
         setItemInInventory(6, new TetrisRightItem(this.game, new ItemStack(Material.ARROW)), Component.text("Right"));
-
     }
 
     private void setItemInInventory(int slot, InteractiveItem item, Component name) {
@@ -52,8 +48,7 @@ public class PlayerTetrisItemListener extends ItemController implements Listener
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
-        if (e.getAction() != Action.RIGHT_CLICK_AIR) return;
-
+        if (e.getAction() != Action.RIGHT_CLICK_AIR || e.getPlayer() != player) return;
         triggerItem(e.getItem());
     }
 }
