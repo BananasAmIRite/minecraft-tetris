@@ -48,7 +48,7 @@ public class PlayerTetrisItemListener extends ItemController implements Listener
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
-        if (e.getAction() != Action.RIGHT_CLICK_AIR || e.getPlayer() != player) return;
+        if (e.getPlayer() != player || e.getAction() != Action.RIGHT_CLICK_AIR) return;
         triggerItem(e.getItem());
     }
 }

@@ -33,8 +33,7 @@ public abstract class InteractiveItem {
     }
 
     public final boolean isItem(ItemStack item) {
-        if (item.getItemMeta() == null) return false;
-        return item.getItemMeta().getPersistentDataContainer().has(new NamespacedKey(plugin, KEY), PersistentDataType.STRING) &&
+        return item.getItemMeta() != null &&
                 Objects.equals(item.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(plugin, KEY), PersistentDataType.STRING), this.value);
     }
 
