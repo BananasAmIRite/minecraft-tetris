@@ -4,11 +4,11 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-public abstract class TogglableItem extends InteractiveItem {
+public abstract class ToggleableItem extends InteractiveItem {
     private boolean toggleValue;
     private final Material off;
     private final Material on;
-    public TogglableItem(Plugin pl, ItemStack item, Material off, Material on, boolean initialValue) {
+    public ToggleableItem(Plugin pl, ItemStack item, Material off, Material on, boolean initialValue) {
         super(pl, item);
         this.off = off;
         this.on = on;

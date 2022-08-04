@@ -50,6 +50,7 @@ public final class MinecraftTetris extends JavaPlugin {
                 getConfig().getInt("height"),
                 Material.getMaterial(getConfig().getString("backgroundBlock")),
                 Material.getMaterial(getConfig().getString("bitBlock")),
+                Material.getMaterial(getConfig().getString("projectedBlock")),
                 Arrays.asList(Utils.getStringFile(getDataFolder() + File.separator + getConfig().getString("blockDataPath")).split(":")),
                 getConfig().getLong("timeBetweenChange"),
                 getConfig().getDouble("speedUpRate"),

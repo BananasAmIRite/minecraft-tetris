@@ -24,10 +24,9 @@ public class TetrisGame extends GameThread {
     private final Player player;
     private final PlayerTetrisItemListener controlListener;
     private int score = 0;
-    private boolean isSpeeding = false;
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     public TetrisGame(MinecraftTetris plugin, TetrisConfig cfg, Player p) {
         super(cfg.getTimeBetweenChange());
         this.plugin = plugin;
@@ -151,6 +150,10 @@ public class TetrisGame extends GameThread {
         return config.getBackgroundBlock();
     }
 
+    public Material getProjectedMaterial() {
+        return config.getProjectedMaterial();
+    }
+
     public int getWidth() {
         return width;
     }
@@ -167,16 +170,7 @@ public class TetrisGame extends GameThread {
         }
     }
 
-    public void setBlockAt(int x, int y, Block value) {
-        this.map.get(y).set(x, value);
-    }
-
-    public boolean isSpeeding() {
-        return isSpeeding;
-    }
-
     public void setSpeeding(boolean speeding) {
-        this.isSpeeding = speeding;
         this.setTimeBetweenTicks(speeding ? (long) (this.config.getTimeBetweenChange() / this.config.getSpeedUpRate()) : this.config.getTimeBetweenChange());
     }
 

@@ -14,9 +14,8 @@ public abstract class GameThread extends Thread {
         while (isStarted) {
             long time = System.currentTimeMillis();
             runGameLoop();
-
             // calculate time until next frame
-            long waitTime = System.currentTimeMillis() - time + timeBetweenTicks;
+            long waitTime = timeBetweenTicks - (System.currentTimeMillis() - time) % timeBetweenTicks;
             try {
                 Thread.sleep(waitTime);
             } catch (InterruptedException e) {

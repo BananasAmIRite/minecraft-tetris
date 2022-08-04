@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TetrisBlockGroup {
-    private TetrisBlockGroupRotation blocks;
+    private final TetrisBlockGroupRotation blocks;
     private TetrisBlockGroupRotation rotCC; // one rotation to the left; counter-clockwise
     private TetrisBlockGroupRotation rotC; // one rotation to the right; clockwise
     private TetrisBlockGroupRotation rot2; // two rotations in either direction
@@ -128,8 +128,6 @@ public class TetrisBlockGroup {
         TetrisBlockGroupRotation rot2 = null;
 
         for (String group : groups) {
-            // System.out.println("group: " + group);
-
             try {
                 TetrisBlockGroupRotation r = TetrisBlockGroupRotation.fromString(group);
                 switch (r.getConfig().getRotation()) {
@@ -150,7 +148,7 @@ public class TetrisBlockGroup {
     private List<TetrisBlock> normalize(List<TetrisBlock> blocks) throws AnchorNotFoundException {
         java.util.Optional<TetrisBlock> o = blocks.stream().filter(TetrisBlock::isAnchor).findFirst();
 
-        if (!o.isPresent()) throw new AnchorNotFoundException();
+        if (o.isEmpty()) throw new AnchorNotFoundException();
         TetrisBlock anchor = o.get();
 
 

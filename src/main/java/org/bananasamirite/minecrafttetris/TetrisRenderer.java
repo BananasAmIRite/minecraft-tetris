@@ -8,16 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class TetrisRenderer {
-    private Location playerLocation;
-    private Location renderStartLocation;
-    private TetrisGame game;
+    private final Location renderStartLocation;
+    private final TetrisGame game;
 
     // rotation data for the screen
     private int xInc; // either xInc or zInc is going to be 0, the other is going to be 1
     private int zInc;
     public TetrisRenderer(TetrisGame game, TetrisConfig config, Player p) {
         this.game = game;
-        this.playerLocation = p.getLocation();
         this.renderStartLocation = calcRenderStartLocation(config, p);
     }
 
@@ -45,6 +43,17 @@ public class TetrisRenderer {
                     }
                 }
 
+//                Location loc = renderStartLocation.clone().add(xInc * 25, -99, zInc * 25);
+//                loc.getBlock().setType(Material.GOLD_BLOCK);
+//
+//                game.getCurrent().getProjectedAnchorList();
+//                // projected block
+                for (TetrisBlock block : game.getCurrent().getProjectedAnchorList()) {
+                    if (block.getCoordinate().getX() < 0 || block.getCoordinate().getX() > game.getWidth() || block.getCoordinate().getY() < 0 || block.getCoordinate().getY() > game.getHeight()) continue;
+                    Location l = renderStartLocation.clone().add(xInc * block.getCoordinate().getX(), -block.getCoordinate().getY(), zInc * block.getCoordinate().getX());
+                    l.getBlock().setType(game.getProjectedMaterial());
+                }
+
                 // current block
                 if (game.getCurrent() == null) return;
                 for (TetrisBlock block : game.getCurrent().getListWithAnchorPos()) {
@@ -52,6 +61,8 @@ public class TetrisRenderer {
                     Location l = renderStartLocation.clone().add(xInc * block.getCoordinate().getX(), -block.getCoordinate().getY(), zInc * block.getCoordinate().getX());
                     l.getBlock().setType(game.getLitMaterial());
                 }
+
+
 
             }
         }.runTask(game.getPlugin());
@@ -69,6 +80,6 @@ public class TetrisRenderer {
                     }
                 }
             }
-        }.runTask(game.getPlugin());
+        }.runTaskLater(game.getPlugin(), 20 * 2);
     }
 }

@@ -9,16 +9,18 @@ public class TetrisConfig {
     private final int height;
     private final Material backgroundBlock;
     private final Material bitBlock;
+    private final Material projectedMaterial;
     private final List<String> blockData;
     private final long timeBetweenChange;
     private final double speedUpRate;
     private final int distFromScreen;
 
-    public TetrisConfig(int width, int height, Material bgBlock, Material bitBlock, List<String> blockData, long timeBetweenChange, double speedUpRate, int distFromScreen) {
+    public TetrisConfig(int width, int height, Material bgBlock, Material bitBlock, Material projectedBlock, List<String> blockData, long timeBetweenChange, double speedUpRate, int distFromScreen) {
         this.width = width;
         this.height = height;
         this.backgroundBlock = bgBlock;
         this.bitBlock = bitBlock;
+        this.projectedMaterial = projectedBlock;
         this.blockData = blockData;
         this.timeBetweenChange = timeBetweenChange;
         this.speedUpRate = speedUpRate;
@@ -55,5 +57,9 @@ public class TetrisConfig {
 
     public int getDistFromScreen() {
         return distFromScreen;
+    }
+
+    public Material getProjectedMaterial() {
+        return projectedMaterial;
     }
 }

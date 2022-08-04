@@ -55,7 +55,7 @@ task cleanServerJar {
 task copyJarToBin {
     doLast {
         copy {
-            from 'build/libs/minecraft-tetris-1.0.jar'
+            from 'build/libs/' + jar.archiveFileName.get()
             into "server/plugins"
         }
 

@@ -12,8 +12,8 @@ import java.util.UUID;
 public abstract class InteractiveItem {
     private static final String KEY = "INTERACTIVE_ITEM";
 
-    private Plugin plugin;
-    private String value;
+    private final Plugin plugin;
+    private final String value;
     private ItemStack item;
 
     public InteractiveItem(Plugin pl, ItemStack item) {
@@ -27,8 +27,6 @@ public abstract class InteractiveItem {
         ItemMeta m = item.getItemMeta();
         m.getPersistentDataContainer().set(new NamespacedKey(plugin, KEY), PersistentDataType.STRING, value);
         item.setItemMeta(m);
-//        System.out.println(item.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(plugin, KEY), PersistentDataType.STRING));
-//        System.out.println(value);
         return value;
     }
 

@@ -7,6 +7,7 @@ import org.bananasamirite.minecrafttetris.blockdata.TetrisBlock;
 import org.bananasamirite.minecrafttetris.blockdata.TetrisBlockGroup;
 
 import java.util.List;
+import java.util.function.Function;
 
 // represents a block group INSIDE the game. TetrisBlockGroup is used for storing a block group in memory OUTSIDE the game.
 public class GameBlockGroup {
@@ -35,21 +36,48 @@ public class GameBlockGroup {
         List<TetrisBlock> blocks = TetrisBlockGroup.offsetList(getRotationList(), anchorPosition.getX(), anchorPosition.getY());
 
         for (TetrisBlock block : blocks) {
-//            System.out.println(game.getBlockAt(block.getCoordinate().getX(), block.getCoordinate().getY()) != null);
-//            System.out.println(block.getCoordinate().getY());
-//            System.out.println(!game.getBlockAt(block.getCoordinate().getX(), block.getCoordinate().getY()).isLit());
 
             Block igBlockAt = game.getBlockAt(block.getCoordinate().getX(), block.getCoordinate().getY());
-
-            if (block.getCoordinate().getY() >= 0) {
-                if (igBlockAt == null || igBlockAt.isLit()) return false;
-            }
-            // TODO: replace this line
-//            if (game.getOutput().getBlockAt(block.getCoordinate().getX(), 0) == null) return; // we do NOT care about the y coordinate because let it be negative idc
+            if (block.getCoordinate().getY() >= 0 && (igBlockAt == null || igBlockAt.isLit())) return false;
         }
 
         this.anchorPosition = anchorPosition;
         return true;
+    }
+
+    public Coordinate getProjectedAnchorPosition() {
+        List<TetrisBlock> blocks = TetrisBlockGroup.offsetList(getRotationList(), anchorPosition.getX(), anchorPosition.getY());
+
+        int lowestY = game.getHeight() - getLowestBlock(blocks).getCoordinate().getY();
+
+        for (TetrisBlock block : blocks) {
+            for (int i = block.getCoordinate().getY(); i < game.getHeight(); i++) {
+                int dist = i - block.getCoordinate().getY();
+                if ((game.getBlockAt(block.getCoordinate().getX(), i) == null || game.getBlockAt(block.getCoordinate().getX(), i).isLit()) && dist < lowestY) {
+                    lowestY = dist;
+                    break;
+                }
+            }
+        }
+
+        return new Coordinate(anchorPosition.getX(), lowestY + anchorPosition.getY() - 1);
+    }
+
+    private TetrisBlock getLowestBlock(List<TetrisBlock> blocks) {
+        int highestY = (int) Double.NEGATIVE_INFINITY;
+        TetrisBlock lowestBlock = null;
+        for (TetrisBlock block : blocks) {
+            if (block.getCoordinate().getY() > highestY) {
+                highestY = block.getCoordinate().getY();
+                lowestBlock = block;
+            }
+        }
+        return lowestBlock;
+    }
+
+    public List<TetrisBlock> getProjectedAnchorList() {
+        Coordinate projectedAnchorCoordinate = getProjectedAnchorPosition();
+        return TetrisBlockGroup.offsetList(getRotationList(), projectedAnchorCoordinate.getX(), projectedAnchorCoordinate.getY());
     }
 
     public TetrisBlockGroup getBlockGroup() {

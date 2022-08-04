@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -50,5 +51,10 @@ public class PlayerTetrisItemListener extends ItemController implements Listener
     public void onPlayerInteract(PlayerInteractEvent e) {
         if (e.getPlayer() != player || e.getAction() != Action.LEFT_CLICK_AIR) return;
         triggerItem(e.getItem());
+    }
+
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent e) {
+        if (e.getPlayer() == player) game.gameEnd();
     }
 }

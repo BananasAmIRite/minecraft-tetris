@@ -8,7 +8,7 @@ import java.util.List;
 public class TetrisBlockGroupRotation {
     private List<TetrisBlock> blocks;
     private TetrisBlock anchor;
-    private TetrisBlockGroupRotationConfig config;
+    private final TetrisBlockGroupRotationConfig config;
 
     public TetrisBlockGroupRotation() throws AnchorNotFoundException {
         this(new ArrayList<>(), new TetrisBlockGroupRotationConfig());
@@ -35,8 +35,6 @@ public class TetrisBlockGroupRotation {
         String[] data = s.split(System.lineSeparator());
         List<TetrisBlock> blocks = new ArrayList<>();
         TetrisBlockGroupRotationConfig config = new TetrisBlockGroupRotationConfig();
-//        System.out.println("data B): " + String.join("_____", data));
-//        System.out.println("data size: " + data.size());
         for (String datum : data) {
             if (datum.startsWith("CFG")) {
                 // config data
