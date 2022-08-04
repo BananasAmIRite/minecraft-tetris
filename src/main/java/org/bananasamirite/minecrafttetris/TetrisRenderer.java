@@ -48,6 +48,7 @@ public class TetrisRenderer {
 //
 //                game.getCurrent().getProjectedAnchorList();
 //                // projected block
+                if (game.getCurrent() == null) return;
                 for (TetrisBlock block : game.getCurrent().getProjectedAnchorList()) {
                     if (block.getCoordinate().getX() < 0 || block.getCoordinate().getX() > game.getWidth() || block.getCoordinate().getY() < 0 || block.getCoordinate().getY() > game.getHeight()) continue;
                     Location l = renderStartLocation.clone().add(xInc * block.getCoordinate().getX(), -block.getCoordinate().getY(), zInc * block.getCoordinate().getX());
@@ -55,7 +56,6 @@ public class TetrisRenderer {
                 }
 
                 // current block
-                if (game.getCurrent() == null) return;
                 for (TetrisBlock block : game.getCurrent().getListWithAnchorPos()) {
                     if (block.getCoordinate().getX() < 0 || block.getCoordinate().getX() > game.getWidth() || block.getCoordinate().getY() < 0 || block.getCoordinate().getY() > game.getHeight()) continue;
                     Location l = renderStartLocation.clone().add(xInc * block.getCoordinate().getX(), -block.getCoordinate().getY(), zInc * block.getCoordinate().getX());
