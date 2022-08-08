@@ -43,10 +43,6 @@ public class TetrisRenderer {
                     }
                 }
 
-//                Location loc = renderStartLocation.clone().add(xInc * 25, -99, zInc * 25);
-//                loc.getBlock().setType(Material.GOLD_BLOCK);
-//
-//                game.getCurrent().getProjectedAnchorList();
 //                // projected block
                 if (game.getCurrent() == null) return;
                 for (TetrisBlock block : game.getCurrent().getProjectedAnchorList()) {

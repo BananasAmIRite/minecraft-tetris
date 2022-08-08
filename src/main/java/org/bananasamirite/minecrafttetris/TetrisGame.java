@@ -20,6 +20,7 @@ public class TetrisGame extends GameThread {
     private GameBlockGroup current;
     private final TetrisRenderer renderer;
     private final MinecraftTetris plugin;
+    private final TetrisGameManager manager;
     private final List<List<Block>> map = new ArrayList<>();
     private final Player player;
     private final PlayerTetrisItemListener controlListener;
@@ -27,9 +28,10 @@ public class TetrisGame extends GameThread {
 
     private final int width;
     private final int height;
-    public TetrisGame(MinecraftTetris plugin, TetrisConfig cfg, Player p) {
+    public TetrisGame(TetrisGameManager manager, TetrisConfig cfg, Player p) {
         super(cfg.getTimeBetweenChange());
-        this.plugin = plugin;
+        this.plugin = manager.getPlugin();
+        this.manager = manager;
         this.config = cfg;
         this.width = config.getWidth();
         this.height = config.getHeight();
@@ -123,6 +125,7 @@ public class TetrisGame extends GameThread {
         this.renderer.clear();
         this.controlListener.restoreInventory();
         HandlerList.unregisterAll(this.controlListener);
+        this.manager.removeGame(this);
         this.player.sendMessage("Game Over. Final Score: " + this.score);
     }
 

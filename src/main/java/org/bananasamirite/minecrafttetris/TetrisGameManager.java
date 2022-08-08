@@ -1,6 +1,5 @@
 package org.bananasamirite.minecrafttetris;
 
-import org.bananasamirite.minecrafttetris.exceptions.AnchorNotFoundException;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class TetrisGameManager {
     }
 
     public TetrisGame createGame(Player p) {
-        TetrisGame g = new TetrisGame(plugin, plugin.getTetrisConfig(), p);
+        TetrisGame g = new TetrisGame(this, plugin.getTetrisConfig(), p);
         this.games.add(g);
         g.start();
         return g;
@@ -31,5 +30,9 @@ public class TetrisGameManager {
             game.gameEnd();
         }
         games.clear();
+    }
+
+    public MinecraftTetris getPlugin() {
+        return plugin;
     }
 }

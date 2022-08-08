@@ -1,8 +1,5 @@
 package org.bananasamirite.minecrafttetris.game;
 
-import org.bananasamirite.minecrafttetris.TetrisConfig;
-import org.bukkit.Material;
-
 // SINGLE block entity
 public class Block {
     private boolean isLit;
