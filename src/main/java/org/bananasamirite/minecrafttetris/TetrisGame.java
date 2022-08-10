@@ -62,8 +62,6 @@ public class TetrisGame extends GameThread {
 
     @Override
     public void runGameLoop() {
-        // logic code here
-
         if (current == null) this.newCurrent();
 
         // removing full rows
@@ -112,7 +110,6 @@ public class TetrisGame extends GameThread {
                 if (block != null) block.light();
             }
             this.current = null;
-//            this.setSpeeding(false); // usage will desynchronize items
         }
 
         this.renderer.render();

@@ -19,7 +19,6 @@ public final class MinecraftTetris extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         getLogger().info("Starting plugin...");
 
         this.gameManager = new TetrisGameManager(this);
@@ -77,4 +76,5 @@ public final class MinecraftTetris extends JavaPlugin {
     public TetrisBlockGroupManager getGroups() {
         return groups;
     }
+
 }

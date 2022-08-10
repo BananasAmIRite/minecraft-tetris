@@ -1,7 +1,6 @@
 package org.bananasamirite.minecrafttetris.controls;
 
 import net.kyori.adventure.text.Component;
-import org.bananasamirite.minecrafttetris.MinecraftTetris;
 import org.bananasamirite.minecrafttetris.TetrisGame;
 import org.bananasamirite.minecrafttetris.controls.items.*;
 import org.bukkit.Material;

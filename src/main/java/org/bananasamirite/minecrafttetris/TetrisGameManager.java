@@ -32,6 +32,10 @@ public class TetrisGameManager {
         games.clear();
     }
 
+    public boolean isPlayerPlaying(Player p) {
+        return this.games.stream().anyMatch(e -> e.getPlayer() == p);
+    }
+
     public MinecraftTetris getPlugin() {
         return plugin;
     }

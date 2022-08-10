@@ -7,7 +7,6 @@ import org.bananasamirite.minecrafttetris.blockdata.TetrisBlock;
 import org.bananasamirite.minecrafttetris.blockdata.TetrisBlockGroup;
 
 import java.util.List;
-import java.util.function.Function;
 
 // represents a block group INSIDE the game. TetrisBlockGroup is used for storing a block group in memory OUTSIDE the game.
 public class GameBlockGroup {
